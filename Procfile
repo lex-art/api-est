@@ -1,1 +1,1 @@
-web:  knex --cwd src migrate:latest --env production && knex --cwd src seed:run --env production && npm start
+web:  knex --cwd src migrate:latest && knex --cwd src seed:run && npm start
