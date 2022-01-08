@@ -6,14 +6,14 @@ module.exports = {
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME 
+      database: process.env.DB_NAME
     },
     migrations: {
-      directory: __dirname + "/api/db/migrations",
+      directory: "./api/db/migrations",
       tableName: "knex_migrations"
     },
     seeds: {
-      directory: __dirname + "/api/db/seeds/dev"
+      directory: "./api/db/seeds/dev"
     }
   },
 
@@ -26,12 +26,12 @@ module.exports = {
     },
     migrations: {
       migrations: {
-        directory: __dirname + "/api/db/migrations",
+        directory: "./api/db/migrations",
         tableName: "knex_migrations"
       }
     },
     seeds: {
-      directory: __dirname + "/api/db/seeds/prod"
+      directory: "./api/db/seeds/prod"
     }
   },
   schema: {
