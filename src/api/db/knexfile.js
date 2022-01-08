@@ -14,7 +14,7 @@ module.exports = {
 
   production: {
     client: "mysql",
-    connection: "mysql://test-laboratorio:RY2alo08@HQl@208.109.41.227/test-api",
+    connection: process.env.DATABASE_URL,
     pool: {
       min: 1,
       max: 1
