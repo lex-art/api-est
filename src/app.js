@@ -29,7 +29,4 @@ app.use("/api", api);
 app.use(middlewareNoFound.notfound);
 app.use(middlewareNoFound.errorHandler);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Serve runngin on port  http://localhost:${PORT}`);
-});
+module.exports = app;
