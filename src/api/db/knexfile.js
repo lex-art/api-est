@@ -4,11 +4,11 @@ module.exports = {
     client: "mysql",
     connection: process.env.DATABASE_URL,
     migrations: {
-      directory: "./api/db/migrations",
+      directory: "./migrations",
       tableName: "knex_migrations"
     },
     seeds: {
-      directory: "./api/db/seeds/dev"
+      directory: "./seeds/dev"
     }
   },
 
@@ -21,7 +21,7 @@ module.exports = {
     },
     migrations: {
       migrations: {
-        directory: "./api/db/migrations",
+        directory: "./migrations",
         tableName: "knex_migrations"
       }
     },
