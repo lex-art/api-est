@@ -2,8 +2,7 @@
 module.exports = {
   development: {
     client: "mysql",
-    connection:
-      "mysql://for-tests:RY2alo08@HQl@mysql-for-tests.alwaysdata.net/for-tests_api",
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: "./migrations",
       tableName: "knex_migrations"
