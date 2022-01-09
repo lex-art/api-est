@@ -1,1 +1,1 @@
-web: knex --cwd app/src/api/db migrate:latest && knex --cwd app/src/api/db seed:run && npm start
+web: knex --cwd /src/api/db migrate:latest && knex --cwd /src/api/db seed:run && npm start
