@@ -20,13 +20,13 @@
 > Tener instalado knex globalmente solo para esta parte
 
 * Crear una migración nueva
-   * knex --cwd src migrate:make tableName --env development
+   * knex --cwd src/api/db migrate:make tableName --env development
 * Crear un seed
-   * knex --cwd src seed:make nameSeed --env development
+   * knex --cwd src/api/db seed:make nameSeed --env development
 * Correr migraciones (cuando corras migraciones, settea las variables directamente, porque no reconocera las variables de entorno)
-   * knex --cwd src migrate:latest --env development
+   * knex --cwd src/api/db migrate:latest --env development
 * Correr seeds
-   * knex --cwd src seed:run --env development
+   * knex --cwd src/api/db seed:run --env development
 
 ## Consumir api
  > muestra el listado de los endporints diponibles para consumir

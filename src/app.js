@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan"); // lleva registros de la peticiones
 const helmet = require("helmet"); // ayuda a proteger la aplicación de algunas vulnerabilidades web conocidas mediante el establecimiento correcto de cabeceras HTTP
 const cors = require("cors");
+const path = require("path");
 
 require("dotenv").config(); // Esta es una forma concisa de configurar variables de entorno en un proceso de Node js
 
@@ -16,12 +17,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json()); // se encarga de configurar todo para devolver una petición dependiendo su contente type
 
-app.get("/", (req, res) => {
-  res.json({
-    message: `Welcome to my API-TEST, By Oscar Chanax, starts to consume the service: ${
-      req.protocol
-    }://${req.hostname}:${process.env.PORT || 5000}/api`
-  });
+app.get("/", (_, res) => {
+  res.sendFile(path.resolve(__dirname, "./view/index.html"));
 });
 
 app.use("/api", api);

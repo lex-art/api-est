@@ -6,11 +6,12 @@ router.get("/", (req, res) => {
     message: "Welcome API-TEST",
     auth: `${req.protocol}://${req.hostname}:${PORT}/api/auth/login`,
     register: `${req.protocol}://${req.hostname}:${PORT}/api/auth/register`,
-    notes: `${req.protocol}://${req.hostname}:${PORT}/api/notes/list`
+    example: `${req.protocol}://${req.hostname}:${PORT}/api/example/list`
   });
 });
 
+// Todo: add your routes
 router.use("/auth", require("./routes/auth"));
-router.use("/notes", validateUser, require("./routes/notes"));
+router.use("/example", validateUser, require("./routes/example"));
 
 module.exports = router;

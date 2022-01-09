@@ -7,7 +7,6 @@ exports.up = function (knex) {
     table.string("email").notNullable().primary();
     table.timestamp("created_at").notNullable();
     table.timestamp("updated_at").notNullable();
-    // table.timestamps(true, true);
   });
 };
 
