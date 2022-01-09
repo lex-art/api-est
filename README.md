@@ -23,9 +23,9 @@
    * knex --cwd src/api/db migrate:make tableName --env development
 * Crear un seed
    * knex --cwd src/api/db seed:make nameSeed --env development
-* Correr migraciones (cuando corras migraciones, settea las variables directamente, porque no reconocera las variables de entorno)
+* Correr migraciones (cuando corras migraciones en local, settea las variables directamente, porque no reconocera las variables de entorno)
    * knex --cwd src/api/db migrate:latest --env development
-* Correr seeds
+* Correr seeds (cuando corras seeds en local, settea las variables directamente, porque no reconocera las variables de entorno)
    * knex --cwd src/api/db seed:run --env development
 
 ## Consumir api
