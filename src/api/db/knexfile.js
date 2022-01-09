@@ -26,7 +26,7 @@ module.exports = {
       }
     },
     seeds: {
-      directory: "./api/db/seeds/prod"
+      directory: "./seeds/prod"
     }
   },
   schema: {
