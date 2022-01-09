@@ -14,13 +14,13 @@ const app = express();
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors());
-app.use(express.json()); // se encarga de configurar todo para devolver una peticion dependiendo su contente type
+app.use(express.json()); // se encarga de configurar todo para devolver una petición dependiendo su contente type
 
-app.get("/", (_, res) => {
+app.get("/", (req, res) => {
   res.json({
-    message: `Welcome to my API-TEST, By Oscar Chanax, starts to consume the service: http://localhost:${
-      process.env.PORT || 5000
-    }/api`
+    message: `Welcome to my API-TEST, By Oscar Chanax, starts to consume the service: ${
+      req.protocol
+    }://${req.hostname}:${process.env.PORT || 5000}/api`
   });
 });
 

@@ -1,23 +1,32 @@
 const db = require("../../models/users");
 const { compare } = require("../../helper/handleBcrypt");
-module.exports = (req, res, next) => {
+const { generateAccesToken } = require("../../helper/jwt");
+
+module.exports = (req, res) => {
   const { email, password } = req.body;
 
   db.getUser(email)
     .then(async (result) => {
       const checkPass = await compare(password, result.password);
-      if (checkPass)
-        return res.json({
+      if (checkPass) {
+        const user = {
+          userName: result.userName,
+          fisrtName: result.fisrtName,
+          lastName: result.lastName,
+          email: result.email
+        };
+        const accessToken = generateAccesToken(user);
+        return res.header("authorization", `Bearer ${accessToken}`).json({
           succes: true,
-          access_token: "token.pueba",
-          user: result
+          access_token: accessToken,
+          user: user
         });
-      else
+      } else
         return res.json({
-          message: "Password Invalid"
+          message: "Password invalid"
         });
     })
-    .catch((err) => {
-      res.status(404).json({ err });
+    .catch((error) => {
+      res.status(404).json({ error });
     });
 };

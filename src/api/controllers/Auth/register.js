@@ -1,3 +1,5 @@
+const db = require("../../models/users");
+
 module.exports = (req, res) => {
   const body = req.body;
 
@@ -9,5 +11,15 @@ module.exports = (req, res) => {
     password: body.password
   };
 
-  return res.status(201).json(newUser);
+  db.saveNewUser(newUser)
+    .then((result) => {
+      console.log(result);
+      if (result)
+        return res.status(201).json({
+          message: "succes"
+        });
+    })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
 };
