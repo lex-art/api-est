@@ -19,5 +19,15 @@ router.get("/", (req, res) => {
 // Todo: add your routes
 router.use("/auth", require("./routes/auth"));
 router.use("/example", validateUser, require("./routes/example"));
+router.get("/getDataExample/:value?", (req, res) => {
+  // TODO: add your code
+  const examapleLsit = {
+    value: req.body.value,
+    param: req.params.value,
+    query: req.query.variable
+  };
+
+  return res.status(201).json({ message: "request success", examapleLsit });
+});
 
 module.exports = router;

@@ -6,11 +6,15 @@ function generateAccesToken(user) {
 
 function validateToken(req, res, next) {
   const token = req.headers.authorization;
+  console.log(req.headers);
   let clearedToken;
   if (String(token).startsWith("Bearer ")) clearedToken = token.split(" ")[1];
   else clearedToken = token;
   jwt.verify(clearedToken, process.env.SECRET_KEY_JWT, (err, user) => {
-    if (err) res.send({ message: "Acces denied, token expired or invalid" });
+    if (err)
+      res
+        .status(401)
+        .json({ message: "Acces denied, token expired or invalid" });
     else {
       req.user = user;
       next();
