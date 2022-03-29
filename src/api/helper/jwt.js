@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { checkUser } = require("./utilities");
+const { checkUser } = require("./utilitiesDB/userUtilities");
 
 function validateToken(req, res, next) {
   const token = req.headers.authorization;
@@ -31,24 +31,6 @@ function refreshToken(req, res) {
     else {
       const { email } = user;
       checkUser(res, email);
-      /* db.getUser(email)
-        .then(async (result) => {
-          const user = {
-            userName: result.userName,
-            fisrtName: result.fisrtName,
-            lastName: result.lastName,
-            email: result.email
-          };
-          const accessToken = generateAccesToken(user);
-          return res.header("authorization", `Bearer ${accessToken}`).json({
-            succes: true,
-            access_token: accessToken,
-            user: user
-          });
-        })
-        .catch((error) => {
-          res.status(404).json({ userNotFountTokenRefresh: error });
-        }); */
     }
   });
 }

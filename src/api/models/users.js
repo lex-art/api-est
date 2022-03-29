@@ -21,7 +21,37 @@ async function saveNewUser(user) {
     updated_at: knex.fn.now()
   });
 }
+
+function saveTokenReset(userEmail, token) {
+  return knex(schema.tokenEmail).insert({
+    userEmail,
+    token
+  });
+}
+
+function updateTokenReset(userEmail, token) {
+  return knex(schema.tokenEmail).where({ userEmail }).update({
+    token,
+    created_at: knex.fn.now()
+  });
+}
+function getExistTokenEmail(userEmail) {
+  return knex(schema.tokenEmail).where({ userEmail }).first();
+}
+
+async function changePasswordUser(email, newPassword) {
+  return knex(schema.users)
+    .where({ email })
+    .update({
+      password: await encrypt(newPassword),
+      updated_at: knex.fn.now()
+    });
+}
 module.exports = {
   getUser,
-  saveNewUser
+  saveNewUser,
+  saveTokenReset,
+  updateTokenReset,
+  getExistTokenEmail,
+  changePasswordUser
 };
