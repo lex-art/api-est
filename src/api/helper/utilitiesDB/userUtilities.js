@@ -99,13 +99,15 @@ function saveTokenReset(res, userEmail) {
 function resetPasswordUser(res, newPassword, token) {
   jwt.verify(token, process.env.SECRET_KEY_JWT_RESET, (err, user) => {
     if (err)
-      return res
-        .status(401)
-        .json({ message: "Acces denied, token expired or invalid" });
+      return res.status(401).json({
+        succes: false,
+        message: "Acces denied, token expired or invalid"
+      });
     else {
       return db.changePasswordUser(user.email, newPassword).then(
         () => {
           return res.status(200).json({
+            succes: true,
             message: "success"
           });
         },
