@@ -97,24 +97,32 @@ function saveTokenReset(res, userEmail) {
 }
 
 function resetPasswordUser(res, newPassword, token) {
-  jwt.verify(token, process.env.SECRET_KEY_JWT_RESET, (err, user) => {
+  jwt.verify(token, process.env.SECRET_KEY_JWT_RESET, async (err, user) => {
     if (err)
       return res.status(401).json({
         succes: false,
         message: "Acces denied, token expired or invalid"
       });
     else {
-      return db.changePasswordUser(user.email, newPassword).then(
-        () => {
-          return res.status(200).json({
-            succes: true,
-            message: "success"
-          });
-        },
-        (error) => {
-          res.status(400).json({ message: "Error change password", error });
-        }
-      );
+      const existToken = await db.getExistTokenEmail(user.email);
+      if (existToken)
+        return db.changePasswordUser(user.email, newPassword).then(
+          () => {
+            db.deleteTokenEmail(user.email).then();
+            return res.status(200).json({
+              succes: true,
+              message: "success"
+            });
+          },
+          (error) => {
+            res.status(400).json({ message: "Error change password", error });
+          }
+        );
+      else
+        return res.status(401).json({
+          succes: false,
+          message: "Acces denied, token expired or invalid"
+        });
     }
   });
 }

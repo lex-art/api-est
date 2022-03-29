@@ -47,11 +47,15 @@ async function changePasswordUser(email, newPassword) {
       updated_at: knex.fn.now()
     });
 }
+function deleteTokenEmail(userEmail) {
+  return knex(schema.tokenEmail).where({ userEmail }).delete();
+}
 module.exports = {
   getUser,
   saveNewUser,
   saveTokenReset,
   updateTokenReset,
   getExistTokenEmail,
-  changePasswordUser
+  changePasswordUser,
+  deleteTokenEmail
 };

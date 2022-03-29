@@ -41,7 +41,7 @@ const forgotPassword = (req, res) => {
 };
 const createNewPassword = (req, res) => {
   const { newPassword } = req.body;
-  const tokenReset = req.headers["token-reset"];;
+  const tokenReset = req.headers["token-reset"];
   if (!(newPassword && tokenReset))
     return res.status(401).json({
       success: false,
