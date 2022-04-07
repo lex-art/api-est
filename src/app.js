@@ -17,6 +17,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json()); // se encarga de configurar todo para devolver una petición dependiendo su contente type
 
+app.use("/public", express.static(path.join(__dirname, "public")));
 app.get("/", (_, res) => {
   res.sendFile(path.resolve(__dirname, "./view/index.html"));
 });
