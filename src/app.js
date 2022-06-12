@@ -13,10 +13,26 @@ const api = require("./api");
 const app = express();
 // use middleware
 app.use(morgan("dev"));
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginEmbedderPolicy: false
+  })
+);
 app.use(cors());
-app.use(express.json()); // se encarga de configurar todo para devolver una petición dependiendo su contente type
+app.use((_, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  /*  res.header(
+    "Cross-Origin-Resource-Policy",
+    "same-site | same-origin | cross-origin"
+  ); */
+  next();
+});
 
+app.use(express.json({ limit: "5mb" }));
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.get("/", (_, res) => {
   res.sendFile(path.resolve(__dirname, "./view/index.html"));
