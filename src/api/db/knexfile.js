@@ -2,7 +2,7 @@
 module.exports = {
   development: {
     client: "mysql",
-    connection: "mysql://root:RY2alo08@HQl@localhost/test1",
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: "./migrations",
       tableName: "knex_migrations"

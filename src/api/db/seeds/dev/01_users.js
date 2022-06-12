@@ -11,7 +11,7 @@ exports.seed = function (knex) {
           userName: "lex-art",
           fisrtName: "Oscar",
           lastName: "Chanax",
-          email: "drummerkoka@gmail.com",
+          email: "t642199@gmail.com",
           password: await encrypt("123456"),
           created_at: knex.fn.now(),
           updated_at: knex.fn.now()
